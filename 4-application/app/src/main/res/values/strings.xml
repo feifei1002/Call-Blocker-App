@@ -6,4 +6,19 @@
     <string name="who_was_it">Who was it?</string>
     <string name="call_type">Call type</string>
     <string name="hint">hint</string>
+    <string name="your_name">Your Name</string>
+    <string name="name" />
+    <string-array name="callType_spinner">
+        <item>Not Specified</item>
+        <item>Scam</item>
+        <item>Missed Call</item>
+        <item>Marketing</item>
+        <item>Fake ID</item>
+        <item>Survey</item>
+        <item>Threats</item>
+        <item>Prank call</item>
+        <item>Auto reminder</item>
+        <item>Debt collector</item>
+        <item>Text message</item>
+    </string-array>
 </resources>
