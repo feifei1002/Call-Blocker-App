@@ -88,10 +88,6 @@ public class ReportFragment extends Fragment implements AdapterView.OnItemSelect
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(arrayAdapter);
         spinner.setOnItemSelectedListener(this);
-        //String ownerName = String.valueOf(view.findViewById(R.id.textInputOwnerName).getContext());
-        //System.out.println(owner);
-        //reportForm.setOwnerName(ownerName);
-        //reportForm = new ReportForm(reportForm.getPhoneNumber(),reportForm.getOwnerName(), reportForm.getYourName(), reportForm.getCallType(), reportForm.getComment());
 
         AppDatabase appDatabase = Room.databaseBuilder(getContext(), AppDatabase.class, "App Database").build();
         this.executorService = Executors.newFixedThreadPool(4);
