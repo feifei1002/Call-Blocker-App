@@ -44,7 +44,6 @@ public class ReportFragment extends Fragment implements AdapterView.OnItemSelect
     private String mParam1;
     private String mParam2;
     private Button submitBtn;
-    //private String owner;
 
     public ReportFragment() {
         // Required empty public constructor
@@ -81,6 +80,7 @@ public class ReportFragment extends Fragment implements AdapterView.OnItemSelect
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_report, container, false);
         Spinner spinner = view.findViewById(R.id.spinner_callType);
+        TextInputEditText phoneNumber = view.findViewById(R.id.textInputPhoneNumber);
         TextInputEditText ownerName = view.findViewById(R.id.textInputOwnerName);
         TextInputEditText yourName = view.findViewById(R.id.textInputYourName);
         TextInputEditText comment = view.findViewById(R.id.textInputComment);
@@ -96,11 +96,12 @@ public class ReportFragment extends Fragment implements AdapterView.OnItemSelect
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String phoneNumberInput = phoneNumber.getText().toString();
                 String ownerNameInput = ownerName.getText().toString();
                 String yourNameInput = yourName.getText().toString();
                 String callTypeInput = spinner.getSelectedItem().toString();
                 String commentInput = comment.getText().toString();
-                ReportForm reportFormSubmit = new ReportForm("01234567", ownerNameInput, yourNameInput, callTypeInput, commentInput);
+                ReportForm reportFormSubmit = new ReportForm(phoneNumberInput, ownerNameInput, yourNameInput, callTypeInput, commentInput);
                 //ReportForm reportForm1 = new ReportForm("0123456788", "Cheng", "Fei", "Scam", "It's a scam");
                 //ReportForm reportForm2 = new ReportForm("035465688", "George", "Fei", "Prank call", "It's a prank call");
                 executorService.execute(new Runnable() {

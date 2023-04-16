@@ -2,6 +2,7 @@
     <string name="app_name">mob-dev-portfolio</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="phone_number">Phone Number</string>
     <string name="owner_s_name">Owner\'s name</string>
     <string name="who_was_it">Who was it?</string>
     <string name="call_type">Call type</string>
@@ -9,6 +10,7 @@
     <string name="your_name">Your Name</string>
     <string name="name" />
     <string name="report">Report</string>
+    <string name="comment">Comment</string>
     <string name="please_share_your_comment">Please share your comment</string>
     <string name="submit">Submit</string>
     <string-array name="callType_spinner">

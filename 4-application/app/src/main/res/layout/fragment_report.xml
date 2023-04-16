@@ -21,6 +21,29 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/textViewPhoneNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/phone_number"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewReport" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/textInputPhoneNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/phone_number"
+        android:minHeight="48dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPhoneNumber"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
         android:id="@+id/textViewOwnerName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -28,7 +51,7 @@
         android:text="@string/who_was_it"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewReport" />
+        app:layout_constraintTop_toBottomOf="@+id/textInputPhoneNumber" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/textInputOwnerName"
@@ -104,7 +127,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="Comment"
+        android:text="@string/comment"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -118,7 +141,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/please_share_your_comment"
-        android:minHeight="150dp"
+        android:minHeight="120dp"
         android:textColorHint="#757575"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
