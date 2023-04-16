@@ -3,15 +3,29 @@ package com.example.mob_dev_portfolio;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.room.Room;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.mob_dev_portfolio.database.AppDatabase;
+import com.example.mob_dev_portfolio.database.ReportForm;
+import com.google.android.material.textfield.TextInputEditText;
+
+import org.w3c.dom.Text;
+
+import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,6 +33,7 @@ import android.widget.Toast;
  * create an instance of this fragment.
  */
 public class ReportFragment extends Fragment implements AdapterView.OnItemSelectedListener {
+    ExecutorService executorService;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -28,6 +43,8 @@ public class ReportFragment extends Fragment implements AdapterView.OnItemSelect
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private Button submitBtn;
+    //private String owner;
 
     public ReportFragment() {
         // Required empty public constructor
@@ -61,16 +78,48 @@ public class ReportFragment extends Fragment implements AdapterView.OnItemSelect
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view =
-        // Inflate the layout for this fragment
-        inflater.inflate(R.layout.fragment_report, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_report, container, false);
         Spinner spinner = view.findViewById(R.id.spinner_callType);
+        TextInputEditText ownerName = view.findViewById(R.id.textInputOwnerName);
+        TextInputEditText yourName = view.findViewById(R.id.textInputYourName);
+        TextInputEditText comment = view.findViewById(R.id.textInputComment);
         ArrayAdapter<CharSequence> arrayAdapter = ArrayAdapter.createFromResource(getContext(), R.array.callType_spinner, android.R.layout.simple_spinner_item);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(arrayAdapter);
         spinner.setOnItemSelectedListener(this);
+        //String ownerName = String.valueOf(view.findViewById(R.id.textInputOwnerName).getContext());
+        //System.out.println(owner);
+        //reportForm.setOwnerName(ownerName);
+        //reportForm = new ReportForm(reportForm.getPhoneNumber(),reportForm.getOwnerName(), reportForm.getYourName(), reportForm.getCallType(), reportForm.getComment());
+
+        AppDatabase appDatabase = Room.databaseBuilder(getContext(), AppDatabase.class, "App Database").build();
+        this.executorService = Executors.newFixedThreadPool(4);
+
+        submitBtn = view.findViewById(R.id.buttonSubmit);
+        submitBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String ownerNameInput = ownerName.getText().toString();
+                String yourNameInput = yourName.getText().toString();
+                String callTypeInput = spinner.getSelectedItem().toString();
+                String commentInput = comment.getText().toString();
+                ReportForm reportFormSubmit = new ReportForm("01234567", ownerNameInput, yourNameInput, callTypeInput, commentInput);
+                //ReportForm reportForm1 = new ReportForm("0123456788", "Cheng", "Fei", "Scam", "It's a scam");
+                //ReportForm reportForm2 = new ReportForm("035465688", "George", "Fei", "Prank call", "It's a prank call");
+                executorService.execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        appDatabase.reportFormDAO().getAllReportForms();
+                        appDatabase.reportFormDAO().insertAll(reportFormSubmit);
+                        List<ReportForm> reportForms = appDatabase.reportFormDAO().getAllReportForms();
+                        for(ReportForm reportForm : reportForms){
+                            Log.i("ReportForm", reportForm.toString());
+                        }
+                    }
+                });
+            }
+        });
         return view;
     }
 
