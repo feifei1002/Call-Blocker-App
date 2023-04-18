@@ -3,6 +3,8 @@ package com.example.mob_dev_portfolio;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.room.Room;
 
 import android.util.Log;
@@ -113,6 +115,11 @@ public class ReportFragment extends Fragment implements AdapterView.OnItemSelect
                         for(ReportForm reportForm : reportForms){
                             Log.i("ReportForm", reportForm.toString());
                         }
+                        ReportListFragment reportListFragment = new ReportListFragment();
+                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                        fragmentTransaction.replace(R.id.frame_layout, reportListFragment);
+                        fragmentTransaction.commit();
                     }
                 });
             }
