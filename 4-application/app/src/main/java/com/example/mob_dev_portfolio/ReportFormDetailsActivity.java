@@ -7,22 +7,22 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.View;
+import com.example.mob_dev_portfolio.databinding.ActivityReportFormDetailsBinding;
 
-import com.example.mob_dev_portfolio.databinding.ActivityMainBinding;
+public class ReportFormDetailsActivity extends AppCompatActivity {
 
-public class MainActivity extends AppCompatActivity {
 
-    ActivityMainBinding binding;
+    ActivityReportFormDetailsBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        binding = ActivityReportFormDetailsBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
         replaceFragment(new HomeFragment());
 
-        binding.bottomNavigationView.setOnItemSelectedListener(item -> {
+        binding.bottomNavigationView2.setOnItemSelectedListener(item -> {
             switch (item.getItemId()){
 
                 case R.id.home:
@@ -49,5 +49,5 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.frame_layout, fragment);
         fragmentTransaction.commit();
     }
-}
 
+}

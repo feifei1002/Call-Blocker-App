@@ -11,4 +11,7 @@
     <item android:title="Search"
         android:icon="@drawable/ic_baseline_search_24"
         android:id="@+id/search"/>
+    <item android:title="Report"
+        android:icon="@drawable/ic_baseline_report_24"
+        android:id="@+id/report"/>
 </menu>

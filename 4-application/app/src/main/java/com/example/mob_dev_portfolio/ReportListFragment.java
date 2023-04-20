@@ -7,19 +7,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 
 import com.example.mob_dev_portfolio.database.AppDatabase;
 import com.example.mob_dev_portfolio.database.ReportForm;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -78,27 +74,23 @@ public class ReportListFragment extends Fragment {
         reportListView = view.findViewById(R.id.report_list_view);
         AppDatabase appDatabase = Room.databaseBuilder(getContext(), AppDatabase.class, "App Database").allowMainThreadQueries().build();
         reportList = (ArrayList<ReportForm>) appDatabase.reportFormDAO().getAllReportForms();
+        ArrayList<String> phoneNumberList = new ArrayList<>();
+        for(int i = 0; i < reportList.size(); i++){
+            String phoneNumber = reportList.get(i).getPhoneNumber();
+            phoneNumberList.add(phoneNumber);
+        }
 //        this.executorService = Executors.newFixedThreadPool(4);
 //        executorService.execute(new Runnable() {
 //            @Override
 //            public void run() {
-//                reportList = (ArrayList<ReportForm>) appDatabase.reportFormDAO().getAllReportForms();
+//                reportList = (appDatabase.reportFormDAO().getAllReportForms());
+//                populateList((ArrayList<ReportForm>) reportList);
 //            }
 //       });
-        reportListAdapter = new ReportListAdapter(reportList);
+        reportListAdapter = new ReportListAdapter(phoneNumberList);
         layoutManager = new LinearLayoutManager(getContext());
         reportListView.setLayoutManager(layoutManager);
         reportListView.setAdapter(reportListAdapter);
         return view;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-//        reportListAdapter = new ReportListAdapter(reportList);
-//        layoutManager = new LinearLayoutManager(getContext());
-//        reportListView.setLayoutManager(layoutManager);
-//        reportListView.setAdapter(reportListAdapter);
-        reportListAdapter.notifyDataSetChanged();
     }
 }
