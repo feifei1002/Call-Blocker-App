@@ -83,14 +83,6 @@ public class ReportListFragment extends Fragment {
             String phoneNumber = reportList.get(i).getPhoneNumber();
             phoneNumberList.add(phoneNumber);
         }
-//        this.executorService = Executors.newFixedThreadPool(4);
-//        executorService.execute(new Runnable() {
-//            @Override
-//            public void run() {
-//                reportList = (appDatabase.reportFormDAO().getAllReportForms());
-//                populateList((ArrayList<ReportForm>) reportList);
-//            }
-//       });
         reportListAdapter = new ReportListAdapter(phoneNumberList);
         layoutManager = new LinearLayoutManager(getContext());
         reportListView.setLayoutManager(layoutManager);
