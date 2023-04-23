@@ -12,8 +12,31 @@
         android:id="@+id/report_list_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@id/report_textView" />
+
+    <TextView
+        android:id="@+id/report_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Here is the list of phone numbers that you reported"
+        app:layout_constraintBottom_toTopOf="@+id/report_list_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/report_button_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Report"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/report_list_view" />
 </androidx.constraintlayout.widget.ConstraintLayout>

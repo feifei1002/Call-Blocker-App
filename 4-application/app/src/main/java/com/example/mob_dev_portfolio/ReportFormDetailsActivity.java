@@ -7,12 +7,15 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+
 import com.example.mob_dev_portfolio.databinding.ActivityReportFormDetailsBinding;
 
 public class ReportFormDetailsActivity extends AppCompatActivity {
 
 
     ActivityReportFormDetailsBinding binding;
+    private Button reportBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,5 +52,4 @@ public class ReportFormDetailsActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.frame_layout, fragment);
         fragmentTransaction.commit();
     }
-
 }

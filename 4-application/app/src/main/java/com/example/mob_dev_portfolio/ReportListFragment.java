@@ -3,6 +3,8 @@ package com.example.mob_dev_portfolio;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
@@ -10,6 +12,7 @@ import androidx.room.Room;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.mob_dev_portfolio.database.AppDatabase;
 import com.example.mob_dev_portfolio.database.ReportForm;
@@ -37,6 +40,7 @@ public class ReportListFragment extends Fragment {
     RecyclerView reportListView;
     private ReportListAdapter reportListAdapter;
     private RecyclerView.LayoutManager layoutManager;
+    private Button reportBtn;
     public ReportListFragment() {
         // Required empty public constructor
     }
@@ -91,6 +95,18 @@ public class ReportListFragment extends Fragment {
         layoutManager = new LinearLayoutManager(getContext());
         reportListView.setLayoutManager(layoutManager);
         reportListView.setAdapter(reportListAdapter);
+
+        reportBtn = view.findViewById(R.id.report_button_2);
+        reportBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.frame_layout, new ReportFragment());
+                fragmentTransaction.commit();
+            }
+        });
         return view;
     }
 }
