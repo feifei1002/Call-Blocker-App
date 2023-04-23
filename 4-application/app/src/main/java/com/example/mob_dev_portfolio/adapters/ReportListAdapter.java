@@ -1,4 +1,4 @@
-package com.example.mob_dev_portfolio;
+package com.example.mob_dev_portfolio.adapters;
 
 import android.content.Intent;
 import android.util.TypedValue;
@@ -7,11 +7,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.mob_dev_portfolio.database.ReportForm;
+import com.example.mob_dev_portfolio.ReportFormDetailsActivity;
 
 import java.util.ArrayList;
 

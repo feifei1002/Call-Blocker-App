@@ -1,4 +1,4 @@
-package com.example.mob_dev_portfolio;
+package com.example.mob_dev_portfolio.fragments;
 
 import android.os.Bundle;
 
@@ -14,6 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.mob_dev_portfolio.R;
+import com.example.mob_dev_portfolio.adapters.ReportListAdapter;
 import com.example.mob_dev_portfolio.database.AppDatabase;
 import com.example.mob_dev_portfolio.database.ReportForm;
 

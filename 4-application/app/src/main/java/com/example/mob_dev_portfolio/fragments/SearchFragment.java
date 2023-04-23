@@ -1,6 +1,5 @@
-package com.example.mob_dev_portfolio;
+package com.example.mob_dev_portfolio.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -21,17 +20,15 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.mob_dev_portfolio.PhoneNoAPI;
+import com.example.mob_dev_portfolio.R;
+import com.example.mob_dev_portfolio.adapters.PhoneNoAPIAdapter;
 
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -106,16 +103,19 @@ public class SearchFragment extends Fragment {
                 fragmentTransaction.commit();
             }
         });
-        phoneNoAPIAdapter = new PhoneNoAPIAdapter(phoneNoAPIS);
-        layoutManager = new LinearLayoutManager(getContext());
-        phoneNoAPIList.setLayoutManager(layoutManager);
-        phoneNoAPIList.setAdapter(phoneNoAPIAdapter);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 phoneNo = query;
+                for(int i = 0; i < phoneNoAPIS.size(); i++){
+                    phoneNoAPIS.get(i).getPhoneNo();
+                }
                 onRequestPhoneNos(view);
-                return false;
+                phoneNoAPIAdapter = new PhoneNoAPIAdapter(phoneNoAPIS);
+                layoutManager = new LinearLayoutManager(getContext());
+                phoneNoAPIList.setLayoutManager(layoutManager);
+                phoneNoAPIList.setAdapter(phoneNoAPIAdapter);
+                return true;
             }
 
             @Override
@@ -124,6 +124,11 @@ public class SearchFragment extends Fragment {
                 //filterList(newText);
             }
         });
+
+//        phoneNoAPIAdapter = new PhoneNoAPIAdapter(phoneNoAPIS);
+//        layoutManager = new LinearLayoutManager(getContext());
+//        phoneNoAPIList.setLayoutManager(layoutManager);
+//        phoneNoAPIList.setAdapter(phoneNoAPIAdapter);
         //onRequestPhoneNos(view);
 
         return view;
@@ -145,23 +150,10 @@ public class SearchFragment extends Fragment {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        System.out.println(error.toString());
                         Toast.makeText(getContext(), error.toString(),Toast.LENGTH_LONG).show();
                     }
                 });
         requestQueue.add(jsonObjectRequest);
-    }
-
-    private void populateList(JSONArray items){
-        phoneNoAPIS.clear();
-        try{
-            for (int i =0; i<items.length();i++) {
-                JSONObject jo = items.getJSONObject(i);
-                phoneNoAPIS.add(new PhoneNoAPI(jo.getString("number")));
-            }
-        }
-        catch(JSONException err){}
-        phoneNoAPIAdapter.notifyDataSetChanged();
     }
 
 }

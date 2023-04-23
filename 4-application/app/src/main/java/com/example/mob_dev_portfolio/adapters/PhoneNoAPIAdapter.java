@@ -1,4 +1,4 @@
-package com.example.mob_dev_portfolio;
+package com.example.mob_dev_portfolio.adapters;
 
 import android.util.TypedValue;
 import android.view.ViewGroup;
@@ -6,6 +6,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.mob_dev_portfolio.PhoneNoAPI;
 
 import java.util.ArrayList;
 
@@ -27,7 +29,7 @@ public class PhoneNoAPIAdapter extends RecyclerView.Adapter<PhoneNoAPIAdapter.Vi
     @Override
     public PhoneNoAPIAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         ViewHolder vh = new ViewHolder(new TextView(parent.getContext()));
-        vh.textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 80f);
+        vh.textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 40f);
         return vh;
     }
 

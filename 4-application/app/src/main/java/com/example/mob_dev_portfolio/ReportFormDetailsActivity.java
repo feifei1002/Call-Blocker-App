@@ -10,6 +10,10 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.mob_dev_portfolio.databinding.ActivityReportFormDetailsBinding;
+import com.example.mob_dev_portfolio.fragments.BlockFragment;
+import com.example.mob_dev_portfolio.fragments.HomeFragment;
+import com.example.mob_dev_portfolio.fragments.ReportListFragment;
+import com.example.mob_dev_portfolio.fragments.SearchFragment;
 
 public class ReportFormDetailsActivity extends AppCompatActivity {
 

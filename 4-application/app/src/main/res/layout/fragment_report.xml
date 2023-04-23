@@ -5,7 +5,7 @@
     android:id="@+id/report_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ReportFragment"
+    tools:context=".fragments.ReportFragment"
     tools:layout_editor_absoluteX="166dp"
     tools:layout_editor_absoluteY="0dp">
 
