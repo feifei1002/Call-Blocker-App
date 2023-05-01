@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">mob-dev-portfolio</string>
+    <string name="phone_number">電話號碼</string>
+    <string name="owner_s_name">呼叫者名字</string>
+    <string name="who_was_it">呼叫者是誰?</string>
+    <string name="call_type">通話類型</string>
+    <string name="your_name">你的名字</string>
+    <string name="block">封鎖</string>
+    <string name="report">舉報</string>
+    <string name="comment">評論</string>
+    <string name="please_share_your_comment">請分享你的評論</string>
+    <string name="submit">提交</string>
+    <string name="search_bar_text">請輸入電話號碼</string>
+    <string name="search_icon">搜尋圖標</string>
+    <string name="name">名字</string>
+</resources>

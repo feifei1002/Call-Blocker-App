@@ -8,11 +8,14 @@
     <string name="call_type">Call type</string>
     <string name="hint">hint</string>
     <string name="your_name">Your Name</string>
-    <string name="name" />
+    <string name="name" >name</string>
+    <string name="block">Block</string>
     <string name="report">Report</string>
     <string name="comment">Comment</string>
     <string name="please_share_your_comment">Please share your comment</string>
     <string name="submit">Submit</string>
+    <string name="search_icon">Search Icon</string>
+    <string name="search_bar_text">Please enter a phone number in the box above to search</string>
     <string-array name="callType_spinner">
         <item>Not Specified</item>
         <item>Scam</item>

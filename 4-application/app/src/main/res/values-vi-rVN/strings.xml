@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">mob-dev-portfolio</string>
+    <string name="phone_number">Số điện thoại</string>
+    <string name="owner_s_name">Tên người gọi</string>
+    <string name="who_was_it">Người gọi là ai?</string>
+    <string name="call_type">Thể loại cuộc gọi</string>
+    <string name="your_name">Tên của bạn</string>
+    <string name="block">Chặn</string>
+    <string name="report">Báo cáo</string>
+    <string name="comment">Bình luận</string>
+    <string name="please_share_your_comment">Hãy chia sẻ bình luận của bạn</string>
+    <string name="submit">Xác định</string>
+    <string name="search_bar_text">Vui lòng nhập số điện thoại của bạn</string>
+    <string name="search_icon">Biểu tượng tìm kiếm</string>
+    <string name="name">Tên</string>
+</resources>

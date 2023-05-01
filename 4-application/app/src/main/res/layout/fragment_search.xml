@@ -12,7 +12,7 @@
         android:id="@+id/block_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Block"
+        android:text="@string/block"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/report_button"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,7 +22,7 @@
         android:id="@+id/report_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Report"
+        android:text="@string/report"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/block_button"
@@ -33,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="100dp"
-        android:text="Please enter a phone number in the box above to search"
+        android:text="@string/search_bar_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -49,7 +49,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/search_icon" />
 
     <android.widget.SearchView
         android:id="@+id/searchView"
@@ -63,12 +64,42 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/search_recyclerView"
-        android:layout_width="409dp"
-        android:layout_height="250dp"
+    <TextView
+        android:id="@+id/phone_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="50dp"
+        app:layout_constraintBottom_toBottomOf="@id/phoneRegion_textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchView"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/phoneRegion_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="50dp"
         app:layout_constraintBottom_toTopOf="@+id/search_imageView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchView" />
+        app:layout_constraintTop_toBottomOf="@+id/phone_textView"
+        app:layout_constraintVertical_bias="0.56" />
+
+    <TextView
+        android:id="@+id/carrier_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/search_imageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/phoneRegion_textView" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

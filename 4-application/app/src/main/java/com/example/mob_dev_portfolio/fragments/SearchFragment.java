@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -26,7 +27,9 @@ import com.example.mob_dev_portfolio.PhoneNoAPI;
 import com.example.mob_dev_portfolio.R;
 import com.example.mob_dev_portfolio.adapters.PhoneNoAPIAdapter;
 
+import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -48,7 +51,9 @@ public class SearchFragment extends Fragment {
     private String phoneNo;
     private Button reportBtn;
     private SearchView searchView;
-    private RecyclerView phoneNoAPIList;
+    private TextView phoneTextView;
+    private TextView phoneRegionTextView;
+    private TextView carrierTextView;
     private PhoneNoAPIAdapter phoneNoAPIAdapter;
     private ArrayList<PhoneNoAPI> phoneNoAPIS = new ArrayList<PhoneNoAPI>();
     private RecyclerView.LayoutManager layoutManager;
@@ -91,8 +96,10 @@ public class SearchFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_search, container, false);
         searchView = view.findViewById(R.id.searchView);
         searchView.setQueryHint("Search for a phone number here");
-        phoneNoAPIList = view.findViewById(R.id.search_recyclerView);
         reportBtn = view.findViewById(R.id.report_button);
+        phoneTextView = view.findViewById(R.id.phone_textView);
+        phoneRegionTextView = view.findViewById(R.id.phoneRegion_textView);
+        carrierTextView = view.findViewById(R.id.carrier_textView);
         reportBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -110,11 +117,7 @@ public class SearchFragment extends Fragment {
                 for(int i = 0; i < phoneNoAPIS.size(); i++){
                     phoneNoAPIS.get(i).getPhoneNo();
                 }
-                onRequestPhoneNos(view);
-                phoneNoAPIAdapter = new PhoneNoAPIAdapter(phoneNoAPIS);
-                layoutManager = new LinearLayoutManager(getContext());
-                phoneNoAPIList.setLayoutManager(layoutManager);
-                phoneNoAPIList.setAdapter(phoneNoAPIAdapter);
+                onRequestPhoneNos();
                 return true;
             }
 
@@ -134,7 +137,7 @@ public class SearchFragment extends Fragment {
         return view;
     }
 
-    public void onRequestPhoneNos (View view) {
+    public void onRequestPhoneNos () {
         //searchPhoneNumber();
         String url1 = "https://api.veriphone.io/v2/verify?key=55944A19DF4542349F85B5ED29DCA8AE";
         String url2 = "https://api.veriphone.io/v2/verify?phone=%2B49-15123577723&key=55944A19DF4542349F85B5ED29DCA8AE";
@@ -144,6 +147,19 @@ public class SearchFragment extends Fragment {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
+                        String phoneNumber;
+                        String phoneRegion;
+                        String carrier;
+                        try {
+                            phoneNumber = response.getString("phone");
+                            phoneTextView.setText(String.format("Phone: %s", phoneNumber));
+                            phoneRegion = response.getString("phone_region");
+                            phoneRegionTextView.setText(String.format("Phone Region: %s", phoneRegion));
+                            carrier = response.getString("carrier");
+                            carrierTextView.setText(String.format("Carrier: %s", carrier));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                         Log.i("Response", response.toString());
                     }
                 },
