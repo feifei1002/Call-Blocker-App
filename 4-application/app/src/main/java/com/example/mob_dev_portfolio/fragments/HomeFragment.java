@@ -10,6 +10,8 @@ import android.os.Bundle;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.provider.ContactsContract;
 import android.util.Log;
@@ -17,7 +19,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.mob_dev_portfolio.ContactData;
 import com.example.mob_dev_portfolio.R;
+import com.example.mob_dev_portfolio.adapters.ContactDataAdapter;
+import com.example.mob_dev_portfolio.adapters.ReportListAdapter;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -34,6 +41,12 @@ public class HomeFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    ArrayList<ContactData> contactDataList = new ArrayList<ContactData>();
+    RecyclerView contactDataView;
+    private ContactDataAdapter contactDataAdapter;
+    private RecyclerView.LayoutManager layoutManager;
+    private String contactName;
+    private String phoneNumber;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -70,7 +83,16 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.fragment_home, container, false);
+        contactDataView = view.findViewById(R.id.contact_list_view);
         getPhoneContacts();
+        for(int i = 0; i < contactDataList.size(); i++){
+            contactName = contactDataList.get(i).getContactName();
+            phoneNumber = contactDataList.get(i).getPhoneNumber();
+        }
+        contactDataAdapter = new ContactDataAdapter(contactDataList);
+        layoutManager = new LinearLayoutManager(getContext());
+        contactDataView.setLayoutManager(layoutManager);
+        contactDataView.setAdapter(contactDataAdapter);
         return view;
     }
 
@@ -87,9 +109,13 @@ public class HomeFragment extends Fragment {
         Log.i("CONTACT_PROVIDER", "TOTAL # OF CONTACTS ::: " + Integer.toString(cursor.getCount()));
         if(cursor.getCount() > 0) {
             while (cursor.moveToNext()) {
+                ContactData contactData = new ContactData();
                 String contactName = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
+                contactData.setContactName(contactName);
                 String contactNumber = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.NUMBER));
-                Log.i("CONTACT_PROVIDER_2", "Contact Name   :::   " + contactName + "Phone No   :::    " + contactNumber);
+                contactData.setPhoneNumber(contactNumber);
+                contactDataList.add(contactData);
+                Log.i("CONTACT_PROVIDER", "Contact Name   :::   " + contactName + "Phone No   :::    " + contactNumber);
             }
         }
     }

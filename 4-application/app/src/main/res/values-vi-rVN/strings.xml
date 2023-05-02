@@ -14,4 +14,5 @@
     <string name="search_bar_text">Vui lòng nhập số điện thoại của bạn</string>
     <string name="search_icon">Biểu tượng tìm kiếm</string>
     <string name="name">Tên</string>
+    <string name="search_for_a_phone_number_here">Vui lòng tìm kiếm số điện thoại tại đây</string>
 </resources>

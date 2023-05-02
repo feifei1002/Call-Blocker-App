@@ -16,6 +16,7 @@
     <string name="submit">Submit</string>
     <string name="search_icon">Search Icon</string>
     <string name="search_bar_text">Please enter a phone number in the box above to search</string>
+    <string name="search_for_a_phone_number_here">Search for a phone number here</string>
     <string-array name="callType_spinner">
         <item>Not Specified</item>
         <item>Scam</item>

@@ -14,4 +14,5 @@
     <string name="search_bar_text">請輸入電話號碼</string>
     <string name="search_icon">搜尋圖標</string>
     <string name="name">名字</string>
+    <string name="search_for_a_phone_number_here">請在此搜尋電話號碼</string>
 </resources>

@@ -95,7 +95,7 @@ public class SearchFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_search, container, false);
         searchView = view.findViewById(R.id.searchView);
-        searchView.setQueryHint("Search for a phone number here");
+        searchView.setQueryHint(getString(R.string.search_for_a_phone_number_here));
         reportBtn = view.findViewById(R.id.report_button);
         phoneTextView = view.findViewById(R.id.phone_textView);
         phoneRegionTextView = view.findViewById(R.id.phoneRegion_textView);
@@ -128,13 +128,6 @@ public class SearchFragment extends Fragment {
                 //filterList(newText);
             }
         });
-
-//        phoneNoAPIAdapter = new PhoneNoAPIAdapter(phoneNoAPIS);
-//        layoutManager = new LinearLayoutManager(getContext());
-//        phoneNoAPIList.setLayoutManager(layoutManager);
-//        phoneNoAPIList.setAdapter(phoneNoAPIAdapter);
-        //onRequestPhoneNos(view);
-
         return view;
     }
 
