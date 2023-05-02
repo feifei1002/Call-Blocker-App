@@ -1,9 +1,18 @@
 package com.example.mob_dev_portfolio.fragments;
 
+import android.Manifest;
+import android.content.ContentResolver;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import android.provider.ContactsContract;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,7 +69,28 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        View view =  inflater.inflate(R.layout.fragment_home, container, false);
+        getPhoneContacts();
+        return view;
+    }
+
+
+    //Please test this on a phone that has contact data
+    private void getPhoneContacts() {
+        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_CONTACTS)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(getActivity(), new String[] {Manifest.permission.READ_CONTACTS}, 0);
+        }
+        ContentResolver contentResolver = getActivity().getContentResolver();
+        Uri uri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI;
+        Cursor cursor = contentResolver.query(uri, null, null, null, null);
+        Log.i("CONTACT_PROVIDER", "TOTAL # OF CONTACTS ::: " + Integer.toString(cursor.getCount()));
+        if(cursor.getCount() > 0) {
+            while (cursor.moveToNext()) {
+                String contactName = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
+                String contactNumber = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                Log.i("CONTACT_PROVIDER_2", "Contact Name   :::   " + contactName + "Phone No   :::    " + contactNumber);
+            }
+        }
     }
 }
