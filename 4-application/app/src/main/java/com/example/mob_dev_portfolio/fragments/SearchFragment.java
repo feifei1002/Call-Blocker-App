@@ -107,6 +107,7 @@ public class SearchFragment extends Fragment {
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.frame_layout, reportFragment);
+                fragmentManager.popBackStackImmediate();
                 fragmentTransaction.commit();
             }
         });
