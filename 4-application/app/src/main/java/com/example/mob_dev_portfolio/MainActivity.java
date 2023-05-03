@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.mob_dev_portfolio.R;
 import com.example.mob_dev_portfolio.databinding.ActivityMainBinding;
 import com.example.mob_dev_portfolio.fragments.BlockFragment;
 import com.example.mob_dev_portfolio.fragments.HomeFragment;

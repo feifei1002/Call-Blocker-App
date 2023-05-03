@@ -7,7 +7,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.mob_dev_portfolio.PhoneNoAPI;
+import com.example.mob_dev_portfolio.classes.PhoneNoAPI;
 
 import java.util.ArrayList;
 

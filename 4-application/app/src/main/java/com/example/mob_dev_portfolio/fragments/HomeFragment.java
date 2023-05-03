@@ -7,7 +7,6 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -19,13 +18,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
-import com.example.mob_dev_portfolio.ContactData;
+import com.example.mob_dev_portfolio.classes.ContactData;
 import com.example.mob_dev_portfolio.R;
 import com.example.mob_dev_portfolio.adapters.ContactDataAdapter;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -120,9 +117,23 @@ public class HomeFragment extends Fragment {
                 Date dateFormat= new Date(Long.valueOf(callDate));
                 String callDateFormatted = String.valueOf(dateFormat);
                 contactData.setCallDate(callDateFormatted);
-
                 contactDataList.add(contactData);
-                Log.i("CONTACT_PROVIDER", contactData.toString());
+
+                String direction = null;
+                switch (Integer.parseInt(cursor.getString(cursor.getColumnIndexOrThrow(CallLog.Calls.TYPE)))) {
+                    case CallLog.Calls.OUTGOING_TYPE:
+                        direction = "OUTGOING";
+                        break;
+                    case CallLog.Calls.INCOMING_TYPE:
+                        direction = "INCOMING";
+                        break;
+                    case CallLog.Calls.MISSED_TYPE:
+                        direction = "MISSED";
+                        break;
+                    default:
+                        break;
+                }
+                Log.i("CONTACT_PROVIDER", contactData.toString() + "call type: " + direction);
             }
         }
         contactDataAdapter = new ContactDataAdapter(contactDataList);

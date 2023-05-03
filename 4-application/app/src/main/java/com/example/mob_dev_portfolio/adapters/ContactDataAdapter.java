@@ -1,16 +1,14 @@
 package com.example.mob_dev_portfolio.adapters;
 
-import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.mob_dev_portfolio.ContactData;
+import com.example.mob_dev_portfolio.classes.ContactData;
 import com.example.mob_dev_portfolio.R;
 
 import java.util.ArrayList;
@@ -45,7 +43,7 @@ public class ContactDataAdapter extends RecyclerView.Adapter<ContactDataAdapter.
     @Override
     public void onBindViewHolder(@NonNull ContactDataAdapter.ViewHolder holder, final int position) {
         ContactData contactData = contactDataList.get(position);
-        if(contactData.getContactName().isEmpty()) {
+        if(contactData.getContactName() == null || contactData.getContactName().isEmpty()) {
             holder.textViewName.setText(R.string.unknown);
         }else {
             holder.textViewName.setText(contactData.getContactName());
