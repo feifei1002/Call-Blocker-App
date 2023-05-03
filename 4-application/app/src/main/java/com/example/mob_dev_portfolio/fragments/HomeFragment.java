@@ -48,8 +48,6 @@ public class HomeFragment extends Fragment {
     RecyclerView contactDataView;
     private ContactDataAdapter contactDataAdapter;
     private RecyclerView.LayoutManager layoutManager;
-    private String contactName;
-    private String phoneNumber;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -89,14 +87,6 @@ public class HomeFragment extends Fragment {
         contactDataView = view.findViewById(R.id.contact_list_view);
         checkPermission();
         //getPhoneContacts();
-        for(int i = 0; i < contactDataList.size(); i++){
-            contactName = contactDataList.get(i).getContactName();
-            phoneNumber = contactDataList.get(i).getPhoneNumber();
-        }
-//        contactDataAdapter = new ContactDataAdapter(contactDataList);
-//        layoutManager = new LinearLayoutManager(getContext());
-//        contactDataView.setLayoutManager(layoutManager);
-//        contactDataView.setAdapter(contactDataAdapter);
         return view;
     }
 
@@ -114,10 +104,7 @@ public class HomeFragment extends Fragment {
     //Please test this on a phone that has contact data
     private void getPhoneContacts() {
         ContentResolver contentResolver = getActivity().getContentResolver();
-        //Uri uri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI;
         Uri uri = CallLog.Calls.CONTENT_URI;
-        //Cursor cursor = contentResolver.query(uri.buildUpon().appendQueryParameter(LIMIT_PARAM_KEY, "10")
-                //.build(), null, null, null, CallLog.Calls.DATE + " DESC");
         Cursor cursor = contentResolver.query(uri, null, null, null, CallLog.Calls.DATE + " DESC");
         Log.i("CONTACT_PROVIDER", "TOTAL # OF CONTACTS ::: " + Integer.toString(cursor.getCount()));
         if(cursor.getCount() > 0) {
@@ -125,14 +112,16 @@ public class HomeFragment extends Fragment {
                 ContactData contactData = new ContactData();
                 String contactName = cursor.getString(cursor.getColumnIndexOrThrow(CallLog.Calls.CACHED_NAME));
                 contactData.setContactName(contactName);
+
                 String contactNumber = cursor.getString(cursor.getColumnIndexOrThrow(CallLog.Calls.NUMBER));
                 contactData.setPhoneNumber(contactNumber);
+
                 String callDate = cursor.getString(cursor.getColumnIndexOrThrow(CallLog.Calls.DATE));
                 Date dateFormat= new Date(Long.valueOf(callDate));
                 String callDateFormatted = String.valueOf(dateFormat);
                 contactData.setCallDate(callDateFormatted);
+
                 contactDataList.add(contactData);
-                //cursor.close();
                 Log.i("CONTACT_PROVIDER", contactData.toString());
             }
         }

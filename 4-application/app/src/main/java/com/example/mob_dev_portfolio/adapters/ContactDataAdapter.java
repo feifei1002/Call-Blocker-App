@@ -45,7 +45,11 @@ public class ContactDataAdapter extends RecyclerView.Adapter<ContactDataAdapter.
     @Override
     public void onBindViewHolder(@NonNull ContactDataAdapter.ViewHolder holder, final int position) {
         ContactData contactData = contactDataList.get(position);
-        holder.textViewName.setText(contactData.getContactName());
+        if(contactData.getContactName().isEmpty()) {
+            holder.textViewName.setText(R.string.unknown);
+        }else {
+            holder.textViewName.setText(contactData.getContactName());
+        }
         holder.textViewNumber.setText(contactData.getPhoneNumber());
         holder.textViewDate.setText(contactData.getCallDate());
     }

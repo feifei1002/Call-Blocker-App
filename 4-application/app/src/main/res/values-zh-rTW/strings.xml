@@ -28,4 +28,6 @@
         <item>討債</item>
         <item>短信</item>
     </string-array>
+    <string name="unknown">未知</string>
+    <string name="hint">暗示</string>
 </resources>

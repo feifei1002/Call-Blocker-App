@@ -28,4 +28,6 @@
         <item>Đòi nợ</item>
         <item>Tin nhắn</item>
     </string-array>
+    <string name="unknown">Không xác định</string>
+    <string name="hint">gợi ý</string>
 </resources>
