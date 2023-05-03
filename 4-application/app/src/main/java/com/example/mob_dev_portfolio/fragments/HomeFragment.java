@@ -1,5 +1,7 @@
 package com.example.mob_dev_portfolio.fragments;
 
+import static android.provider.CallLog.Calls.LIMIT_PARAM_KEY;
+
 import android.Manifest;
 import android.content.ContentResolver;
 import android.content.pm.PackageManager;
@@ -13,7 +15,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.provider.CallLog;
 import android.provider.ContactsContract;
+import android.telecom.Call;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,7 +28,9 @@ import com.example.mob_dev_portfolio.R;
 import com.example.mob_dev_portfolio.adapters.ContactDataAdapter;
 import com.example.mob_dev_portfolio.adapters.ReportListAdapter;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -99,23 +105,31 @@ public class HomeFragment extends Fragment {
 
     //Please test this on a phone that has contact data
     private void getPhoneContacts() {
-        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_CONTACTS)
+        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_CALL_LOG)
                 != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(getActivity(), new String[] {Manifest.permission.READ_CONTACTS}, 0);
+            ActivityCompat.requestPermissions(getActivity(), new String[] {Manifest.permission.READ_CALL_LOG}, 0);
         }
         ContentResolver contentResolver = getActivity().getContentResolver();
-        Uri uri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI;
-        Cursor cursor = contentResolver.query(uri, null, null, null, null);
+        //Uri uri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI;
+        Uri uri = CallLog.Calls.CONTENT_URI;
+        //Cursor cursor = contentResolver.query(uri.buildUpon().appendQueryParameter(LIMIT_PARAM_KEY, "10")
+                //.build(), null, null, null, CallLog.Calls.DATE + " DESC");
+        Cursor cursor = contentResolver.query(uri, null, null, null, CallLog.Calls.DATE + " DESC");
         Log.i("CONTACT_PROVIDER", "TOTAL # OF CONTACTS ::: " + Integer.toString(cursor.getCount()));
         if(cursor.getCount() > 0) {
             while (cursor.moveToNext()) {
                 ContactData contactData = new ContactData();
-                String contactName = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
+                String contactName = cursor.getString(cursor.getColumnIndexOrThrow(CallLog.Calls.CACHED_NAME));
                 contactData.setContactName(contactName);
-                String contactNumber = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                String contactNumber = cursor.getString(cursor.getColumnIndexOrThrow(CallLog.Calls.NUMBER));
                 contactData.setPhoneNumber(contactNumber);
+                String callDate = cursor.getString(cursor.getColumnIndexOrThrow(CallLog.Calls.DATE));
+                //SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                Date dateFormat= new Date(Long.valueOf(callDate));
+                String callDateFormatted = String.valueOf(dateFormat);
+                contactData.setCallDate(callDateFormatted);
                 contactDataList.add(contactData);
-                Log.i("CONTACT_PROVIDER", "Contact Name   :::   " + contactName + "Phone No   :::    " + contactNumber);
+                Log.i("CONTACT_PROVIDER", "Contact Name: " + contactName + "  Phone No: " + contactNumber + "  Call Date: " + callDateFormatted);
             }
         }
     }

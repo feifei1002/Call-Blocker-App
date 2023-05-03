@@ -15,4 +15,17 @@
     <string name="search_icon">Biểu tượng tìm kiếm</string>
     <string name="name">Tên</string>
     <string name="search_for_a_phone_number_here">Vui lòng tìm kiếm số điện thoại tại đây</string>
+    <string-array name="callType_spinner">
+        <item>không chỉ định</item>
+        <item>Lừa đảo</item>
+        <item>Cuộc gọi nhỡ</item>
+        <item>Quảng cáo</item>
+        <item>ID giả mạo</item>
+        <item>Khảo sát</item>
+        <item>Đe dọa</item>
+        <item>Cuộc gọi lừa đảo</item>
+        <item>Tự động nhắc nhở</item>
+        <item>Đòi nợ</item>
+        <item>Tin nhắn</item>
+    </string-array>
 </resources>

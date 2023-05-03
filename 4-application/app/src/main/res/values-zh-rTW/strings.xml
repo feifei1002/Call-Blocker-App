@@ -15,4 +15,17 @@
     <string name="search_icon">搜尋圖標</string>
     <string name="name">名字</string>
     <string name="search_for_a_phone_number_here">請在此搜尋電話號碼</string>
+    <string-array name="callType_spinner">
+        <item>未指定</item>
+        <item>詐騙</item>
+        <item>未接來電</item>
+        <item>廣告</item>
+        <item>偽證</item>
+        <item>民意調查</item>
+        <item>威脅</item>
+        <item>惡作劇電話</item>
+        <item>自動提醒</item>
+        <item>討債</item>
+        <item>短信</item>
+    </string-array>
 </resources>

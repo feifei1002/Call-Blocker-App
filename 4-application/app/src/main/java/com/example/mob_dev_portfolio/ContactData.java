@@ -3,7 +3,7 @@ package com.example.mob_dev_portfolio;
 public class ContactData {
     private String contactName;
     private String phoneNumber;
-
+    private String callDate;
     public String getContactName() {
         return contactName;
     }
@@ -20,9 +20,18 @@ public class ContactData {
         this.phoneNumber = phoneNumber;
     }
 
+    public String getCallDate() {
+        return callDate;
+    }
+
+    public void setCallDate(String callDate) {
+        this.callDate = callDate;
+    }
+
     @Override
     public String toString() {
-        return  "Contact Name='" + contactName + '\'' +
-                ", Phone Number='" + phoneNumber + '\'' ;
+        return  "Contact Name:'" + contactName + '\'' +
+                ", Phone Number:'" + phoneNumber + '\'' +
+                ", Call Date: '" + callDate + '\'';
     }
 }
