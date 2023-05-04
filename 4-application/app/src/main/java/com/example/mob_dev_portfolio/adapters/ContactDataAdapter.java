@@ -3,6 +3,7 @@ package com.example.mob_dev_portfolio.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,11 +21,14 @@ public class ContactDataAdapter extends RecyclerView.Adapter<ContactDataAdapter.
         public TextView textViewName;
         public TextView textViewNumber;
         public TextView textViewDate;
-        public ViewHolder(@NonNull View textView) {
-            super(textView);
-            textViewName = textView.findViewById(R.id.name_textView);
-            textViewNumber = textView.findViewById(R.id.number_textView);
-            textViewDate = textView.findViewById(R.id.date_textView);
+        public ImageView imageViewCallType;
+        public ViewHolder(@NonNull View view) {
+            super(view);
+            textViewName = view.findViewById(R.id.name_textView);
+            textViewNumber = view.findViewById(R.id.number_textView);
+            textViewDate = view.findViewById(R.id.date_textView);
+            imageViewCallType = view.findViewById(R.id.callType_imageView);
+
         }
     }
 
@@ -36,12 +40,12 @@ public class ContactDataAdapter extends RecyclerView.Adapter<ContactDataAdapter.
     @Override
     public ContactDataAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_calllog, parent, false);
-        ContactDataAdapter.ViewHolder vh = new ContactDataAdapter.ViewHolder(new TextView(parent.getContext()));
+        //ContactDataAdapter.ViewHolder vh = new ContactDataAdapter.ViewHolder(new TextView(parent.getContext()));
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ContactDataAdapter.ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         ContactData contactData = contactDataList.get(position);
         if(contactData.getContactName() == null || contactData.getContactName().isEmpty()) {
             holder.textViewName.setText(R.string.unknown);
@@ -50,6 +54,16 @@ public class ContactDataAdapter extends RecyclerView.Adapter<ContactDataAdapter.
         }
         holder.textViewNumber.setText(contactData.getPhoneNumber());
         holder.textViewDate.setText(contactData.getCallDate());
+        if (contactData.getCallType().equals("INCOMING")) {
+            holder.imageViewCallType.setImageResource(R.drawable.ic_baseline_call_received_24);
+        }
+        else if(contactData.getCallType().equals("OUTGOING")) {
+            holder.imageViewCallType.setImageResource(R.drawable.ic_baseline_call_made_24);
+        }
+        else if(contactData.getCallType().equals("MISSED")) {
+            holder.imageViewCallType.setImageResource(R.drawable.ic_baseline_call_missed_24);
+        }
+
     }
 
     @Override

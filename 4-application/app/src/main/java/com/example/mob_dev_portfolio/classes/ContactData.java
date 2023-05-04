@@ -4,6 +4,7 @@ public class ContactData {
     private String contactName;
     private String phoneNumber;
     private String callDate;
+    private String callType;
     public String getContactName() {
         return contactName;
     }
@@ -28,10 +29,19 @@ public class ContactData {
         this.callDate = callDate;
     }
 
+    public String getCallType() {
+        return callType;
+    }
+
+    public void setCallType(String callType) {
+        this.callType = callType;
+    }
+
     @Override
     public String toString() {
         return  "Contact Name:'" + contactName + '\'' +
                 ", Phone Number:'" + phoneNumber + '\'' +
-                ", Call Date: '" + callDate + '\'';
+                ", Call Date: '" + callDate + '\'' +
+                ", Call Type: '" + callType + '\'';
     }
 }

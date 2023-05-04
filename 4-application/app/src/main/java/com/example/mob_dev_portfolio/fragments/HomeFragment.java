@@ -133,6 +133,7 @@ public class HomeFragment extends Fragment {
                     default:
                         break;
                 }
+                contactData.setCallType(direction);
                 Log.i("CONTACT_PROVIDER", contactData.toString() + "call type: " + direction);
             }
         }
