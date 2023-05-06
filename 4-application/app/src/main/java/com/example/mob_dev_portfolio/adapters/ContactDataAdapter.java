@@ -7,10 +7,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mob_dev_portfolio.classes.ContactData;
 import com.example.mob_dev_portfolio.R;
+import com.example.mob_dev_portfolio.fragments.ReportFragment;
 
 import java.util.ArrayList;
 
@@ -54,15 +58,27 @@ public class ContactDataAdapter extends RecyclerView.Adapter<ContactDataAdapter.
         }
         holder.textViewNumber.setText(contactData.getPhoneNumber());
         holder.textViewDate.setText(contactData.getCallDate());
-        if (contactData.getCallType().equals("INCOMING")) {
+        if (contactData.getCallType() == "INCOMING") {
             holder.imageViewCallType.setImageResource(R.drawable.ic_baseline_call_received_24);
         }
-        else if(contactData.getCallType().equals("OUTGOING")) {
+        else if(contactData.getCallType() == "OUTGOING") {
             holder.imageViewCallType.setImageResource(R.drawable.ic_baseline_call_made_24);
         }
-        else if(contactData.getCallType().equals("MISSED")) {
+        else if(contactData.getCallType()== "MISSED") {
             holder.imageViewCallType.setImageResource(R.drawable.ic_baseline_call_missed_24);
         }
+        holder.textViewName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AppCompatActivity activity = (AppCompatActivity) v.getContext();
+                ReportFragment reportFragment = new ReportFragment();
+                FragmentManager fragmentManager = activity.getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.frame_layout, reportFragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+        });
 
     }
 
