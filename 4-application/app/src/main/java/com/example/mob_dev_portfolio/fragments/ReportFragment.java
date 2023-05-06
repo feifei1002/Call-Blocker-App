@@ -43,6 +43,7 @@ public class ReportFragment extends Fragment implements AdapterView.OnItemSelect
     private String mParam1;
     private String mParam2;
     private Button submitBtn;
+    String phoneNo;
 
     public ReportFragment() {
         // Required empty public constructor
@@ -72,6 +73,7 @@ public class ReportFragment extends Fragment implements AdapterView.OnItemSelect
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+            phoneNo = getArguments().getString("phoneNo");
         }
     }
 
@@ -90,6 +92,7 @@ public class ReportFragment extends Fragment implements AdapterView.OnItemSelect
 
         AppDatabase appDatabase = Room.databaseBuilder(getContext(), AppDatabase.class, "App Database").build();
         this.executorService = Executors.newFixedThreadPool(4);
+            phoneNumber.setText(phoneNo);
 
         submitBtn = view.findViewById(R.id.buttonSubmit);
         submitBtn.setOnClickListener(new View.OnClickListener() {

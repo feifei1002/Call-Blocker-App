@@ -1,5 +1,6 @@
 package com.example.mob_dev_portfolio.adapters;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +27,7 @@ public class ContactDataAdapter extends RecyclerView.Adapter<ContactDataAdapter.
         public TextView textViewNumber;
         public TextView textViewDate;
         public ImageView imageViewCallType;
+        //public FragmentCommunication fCommunication;
         public ViewHolder(@NonNull View view) {
             super(view);
             textViewName = view.findViewById(R.id.name_textView);
@@ -44,8 +46,9 @@ public class ContactDataAdapter extends RecyclerView.Adapter<ContactDataAdapter.
     @Override
     public ContactDataAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_calllog, parent, false);
-        //ContactDataAdapter.ViewHolder vh = new ContactDataAdapter.ViewHolder(new TextView(parent.getContext()));
-        return new ViewHolder(view);
+//        ContactDataAdapter.ViewHolder vh = new ContactDataAdapter.ViewHolder(new TextView(parent.getContext()));
+        ContactDataAdapter.ViewHolder vh = new ContactDataAdapter.ViewHolder(view);
+        return vh;
     }
 
     @Override
@@ -72,8 +75,11 @@ public class ContactDataAdapter extends RecyclerView.Adapter<ContactDataAdapter.
             public void onClick(View v) {
                 AppCompatActivity activity = (AppCompatActivity) v.getContext();
                 ReportFragment reportFragment = new ReportFragment();
+                Bundle bundle = new Bundle();
                 FragmentManager fragmentManager = activity.getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                bundle.putString("phoneNo",contactData.getPhoneNumber());
+                reportFragment.setArguments(bundle);
                 fragmentTransaction.replace(R.id.frame_layout, reportFragment);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
