@@ -31,4 +31,6 @@
     <string name="unknown">Không xác định</string>
     <string name="hint">gợi ý</string>
     <string name="here_is_the_list_of_phone_numbers_that_you_reported">Dưới đây là danh sách các số điện thoại bạn đã báo cáo</string>
+    <string name="home">Trang chủ</string>
+    <string name="search">Tìm kiếm</string>
 </resources>

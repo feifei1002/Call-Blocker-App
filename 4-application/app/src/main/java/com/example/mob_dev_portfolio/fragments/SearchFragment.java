@@ -2,6 +2,7 @@ package com.example.mob_dev_portfolio.fragments;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -47,6 +48,7 @@ public class SearchFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private String phoneNo;
+    private String phoneNoKnown;
     private Button reportBtn;
     private SearchView searchView;
     private TextView phoneTextView;
@@ -84,6 +86,7 @@ public class SearchFragment extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+            phoneNoKnown = getArguments().getString("phoneNo");
         }
     }
 
@@ -98,14 +101,20 @@ public class SearchFragment extends Fragment {
         phoneTextView = view.findViewById(R.id.phone_textView);
         phoneRegionTextView = view.findViewById(R.id.phoneRegion_textView);
         carrierTextView = view.findViewById(R.id.carrier_textView);
+        searchView.setQuery(phoneNoKnown, false);
         reportBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                AppCompatActivity activity = (AppCompatActivity) v.getContext();
                 ReportFragment reportFragment = new ReportFragment();
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                Bundle bundle = new Bundle();
+                FragmentManager fragmentManager = activity.getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                Log.i("SearchView", String.valueOf(searchView.getQuery()));
+                bundle.putString("phoneNoKnown", String.valueOf(searchView.getQuery()));
+                reportFragment.setArguments(bundle);
                 fragmentTransaction.replace(R.id.frame_layout, reportFragment);
-                fragmentManager.popBackStackImmediate();
+                fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
             }
         });

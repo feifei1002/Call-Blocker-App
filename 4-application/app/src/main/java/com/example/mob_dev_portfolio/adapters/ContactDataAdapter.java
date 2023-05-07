@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.mob_dev_portfolio.classes.ContactData;
 import com.example.mob_dev_portfolio.R;
 import com.example.mob_dev_portfolio.fragments.ReportFragment;
+import com.example.mob_dev_portfolio.fragments.SearchFragment;
 
 import java.util.ArrayList;
 
@@ -74,13 +75,13 @@ public class ContactDataAdapter extends RecyclerView.Adapter<ContactDataAdapter.
             @Override
             public void onClick(View v) {
                 AppCompatActivity activity = (AppCompatActivity) v.getContext();
-                ReportFragment reportFragment = new ReportFragment();
+                SearchFragment searchFragment = new SearchFragment();
                 Bundle bundle = new Bundle();
                 FragmentManager fragmentManager = activity.getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 bundle.putString("phoneNo",contactData.getPhoneNumber());
-                reportFragment.setArguments(bundle);
-                fragmentTransaction.replace(R.id.frame_layout, reportFragment);
+                searchFragment.setArguments(bundle);
+                fragmentTransaction.replace(R.id.frame_layout, searchFragment);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
             }

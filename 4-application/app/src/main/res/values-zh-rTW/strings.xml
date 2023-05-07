@@ -31,4 +31,6 @@
     <string name="unknown">未知</string>
     <string name="hint">暗示</string>
     <string name="here_is_the_list_of_phone_numbers_that_you_reported">以下是您舉報的電話號碼列表</string>
+    <string name="home">主頁</string>
+    <string name="search">搜尋</string>
 </resources>

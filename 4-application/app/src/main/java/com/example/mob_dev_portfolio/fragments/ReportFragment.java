@@ -43,7 +43,7 @@ public class ReportFragment extends Fragment implements AdapterView.OnItemSelect
     private String mParam1;
     private String mParam2;
     private Button submitBtn;
-    String phoneNo;
+    private String phoneNoKnown;
 
     public ReportFragment() {
         // Required empty public constructor
@@ -73,7 +73,7 @@ public class ReportFragment extends Fragment implements AdapterView.OnItemSelect
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
-            phoneNo = getArguments().getString("phoneNo");
+            phoneNoKnown = getArguments().getString("phoneNoKnown");
         }
     }
 
@@ -92,7 +92,7 @@ public class ReportFragment extends Fragment implements AdapterView.OnItemSelect
 
         AppDatabase appDatabase = Room.databaseBuilder(getContext(), AppDatabase.class, "App Database").build();
         this.executorService = Executors.newFixedThreadPool(4);
-            phoneNumber.setText(phoneNo);
+            phoneNumber.setText(phoneNoKnown);
 
         submitBtn = view.findViewById(R.id.buttonSubmit);
         submitBtn.setOnClickListener(new View.OnClickListener() {
@@ -119,7 +119,7 @@ public class ReportFragment extends Fragment implements AdapterView.OnItemSelect
                         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                         fragmentTransaction.replace(R.id.frame_layout, reportListFragment);
-                        fragmentManager.popBackStackImmediate();
+                        fragmentTransaction.addToBackStack(null);
                         fragmentTransaction.commit();
                     }
                 });
