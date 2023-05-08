@@ -2,6 +2,7 @@ package com.example.mob_dev_portfolio.adapters;
 
 import android.content.Intent;
 import android.util.TypedValue;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.mob_dev_portfolio.R;
 import com.example.mob_dev_portfolio.ReportFormDetailsActivity;
 
 import java.util.ArrayList;
@@ -20,9 +22,9 @@ public class ReportListAdapter extends RecyclerView.Adapter<ReportListAdapter.Vi
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView textView;
 
-        public ViewHolder(TextView view) {
+        public ViewHolder(View view) {
             super(view);
-            textView = view;
+            textView = view.findViewById(R.id.phoneNo_textView);
         }
     }
 
@@ -32,8 +34,8 @@ public class ReportListAdapter extends RecyclerView.Adapter<ReportListAdapter.Vi
 
     @Override
     public ReportListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        ViewHolder vh = new ViewHolder(new TextView(parent.getContext()));
-        vh.textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 40f);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_phone_no, parent, false);
+        ReportListAdapter.ViewHolder vh = new ReportListAdapter.ViewHolder(view);
         return vh;
     }
 

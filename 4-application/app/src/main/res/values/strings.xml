@@ -19,6 +19,7 @@
     <string name="search_for_a_phone_number_here">Search for a phone number here</string>
     <string name="unknown">Unknown</string>
     <string name="here_is_the_list_of_phone_numbers_that_you_reported">Here is the list of phone numbers that you reported</string>
+    <string name="here_is_the_list_of_phone_numbers_that_you_blocked">Here is the list of phone numbers that you blocked</string>>
     <string name="home">Home</string>
     <string name="search">Search</string>
     <string-array name="callType_spinner">

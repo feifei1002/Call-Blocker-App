@@ -50,6 +50,7 @@ public class SearchFragment extends Fragment {
     private String phoneNo;
     private String phoneNoKnown;
     private Button reportBtn;
+    private Button blockBtn;
     private SearchView searchView;
     private TextView phoneTextView;
     private TextView phoneRegionTextView;
@@ -98,6 +99,7 @@ public class SearchFragment extends Fragment {
         searchView = view.findViewById(R.id.searchView);
         searchView.setQueryHint(getString(R.string.search_for_a_phone_number_here));
         reportBtn = view.findViewById(R.id.report_button);
+        blockBtn = view.findViewById(R.id.block_button);
         phoneTextView = view.findViewById(R.id.phone_textView);
         phoneRegionTextView = view.findViewById(R.id.phoneRegion_textView);
         carrierTextView = view.findViewById(R.id.carrier_textView);
@@ -133,6 +135,12 @@ public class SearchFragment extends Fragment {
             public boolean onQueryTextChange(String newText) {
                 return false;
                 //filterList(newText);
+            }
+        });
+
+        blockBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
             }
         });
         return view;
@@ -172,5 +180,4 @@ public class SearchFragment extends Fragment {
                 });
         requestQueue.add(jsonObjectRequest);
     }
-
 }
