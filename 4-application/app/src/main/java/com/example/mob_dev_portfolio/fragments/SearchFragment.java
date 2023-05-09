@@ -23,6 +23,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.mob_dev_portfolio.BlockDialog;
 import com.example.mob_dev_portfolio.classes.PhoneNoAPI;
 import com.example.mob_dev_portfolio.R;
 import com.example.mob_dev_portfolio.adapters.PhoneNoAPIAdapter;
@@ -37,7 +38,7 @@ import java.util.ArrayList;
  * Use the {@link SearchFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SearchFragment extends Fragment {
+public class SearchFragment extends Fragment implements BlockDialog.BlockDialogListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -141,6 +142,7 @@ public class SearchFragment extends Fragment {
         blockBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                openBlockDialog();
             }
         });
         return view;
@@ -179,5 +181,15 @@ public class SearchFragment extends Fragment {
                     }
                 });
         requestQueue.add(jsonObjectRequest);
+    }
+
+    public void openBlockDialog() {
+        BlockDialog blockDialog = new BlockDialog();
+        blockDialog.show(getActivity().getSupportFragmentManager(), getString(R.string.block_dialog));
+    }
+
+    @Override
+    public void onYesClicked() {
+        String phoneNo = String.valueOf(searchView.getQuery());
     }
 }

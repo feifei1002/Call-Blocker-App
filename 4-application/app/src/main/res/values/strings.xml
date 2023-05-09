@@ -22,6 +22,11 @@
     <string name="here_is_the_list_of_phone_numbers_that_you_blocked">Here is the list of phone numbers that you blocked</string>>
     <string name="home">Home</string>
     <string name="search">Search</string>
+    <string name="block_phone_number">Block phone number</string>
+    <string name="block_phone_number_message">Are you sure you want to block the number?</string>
+    <string name="cancel">Cancel</string>
+    <string name="yes">Yes</string>
+    <string name="block_dialog">Block Dialog</string>
     <string-array name="callType_spinner">
         <item>Not Specified</item>
         <item>Scam</item>
