@@ -1,5 +1,7 @@
 package com.example.mob_dev_portfolio.fragments;
 
+import static android.content.ContentValues.TAG;
+
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -106,8 +108,7 @@ public class SearchFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_search, container, false);
         searchView = view.findViewById(R.id.searchView);
         searchView.setQueryHint(getString(R.string.search_for_a_phone_number_here));
-        searchView.setIconified(false);
-        searchView.clearFocus();
+        searchView.onActionViewExpanded();
         reportBtn = view.findViewById(R.id.report_button);
         blockBtn = view.findViewById(R.id.block_button);
         phoneTextView = view.findViewById(R.id.phone_textView);
@@ -152,7 +153,14 @@ public class SearchFragment extends Fragment {
         blockBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d(TAG, "onClick: open block dialog");
+
+                BlockDialog blockDialog = new BlockDialog();
+                blockDialog.show(getFragmentManager(), "BlockDialog");
                 String phoneNumber = String.valueOf(searchView.getQuery());
+                Bundle bundle = new Bundle();
+                bundle.putString("phoneNoBlock", phoneNumber);
+                blockDialog.setArguments(bundle);
                 BlockList blockListSubmit = new BlockList(phoneNumber);
                 //BlockList blockListTest = new BlockList("0123456789");
                 executorService.execute(new Runnable() {

@@ -34,4 +34,9 @@
     <string name="home">Trang chủ</string>
     <string name="search">Tìm kiếm</string>
     <string name="here_is_the_list_of_phone_numbers_that_you_blocked">Dưới đây là danh sách các số điện thoại mà bạn đã chặn</string>
+    <string name="block_phone_number_message">Bạn có chắc là muốn chặn số này không?</string>
+    <string name="block_phone_number">Chặn số điện thoại</string>
+    <string name="cancel">Hủy</string>
+    <string name="yes">Xác định</string>
+    <string name="block_dialog">Hộp thoại chặn</string>
 </resources>

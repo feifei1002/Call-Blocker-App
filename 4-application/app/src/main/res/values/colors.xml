@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="mainItem">#FF3700B3</color>
     <color name="subItem">#FF000000</color>
+    <color name="button">#33BBFF</color>
 </resources>

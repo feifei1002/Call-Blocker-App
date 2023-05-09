@@ -24,8 +24,8 @@
     <string name="search">Search</string>
     <string name="block_phone_number">Block phone number</string>
     <string name="block_phone_number_message">Are you sure you want to block the number?</string>
-    <string name="cancel">Cancel</string>
-    <string name="yes">Yes</string>
+    <string name="cancel">CANCEL</string>
+    <string name="yes">YES</string>
     <string name="block_dialog">Block Dialog</string>
     <string-array name="callType_spinner">
         <item>Not Specified</item>
