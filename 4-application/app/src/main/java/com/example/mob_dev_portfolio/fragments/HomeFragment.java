@@ -134,7 +134,7 @@ public class HomeFragment extends Fragment {
                         break;
                 }
                 contactData.setCallType(direction);
-                Log.i("CONTACT_PROVIDER", contactData.toString() + "call type: " + direction);
+                //Log.i("CONTACT_PROVIDER", contactData.toString() + "call type: " + direction);
             }
         }
         contactDataAdapter = new ContactDataAdapter(contactDataList);

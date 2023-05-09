@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,18 +28,23 @@ import com.example.mob_dev_portfolio.BlockDialog;
 import com.example.mob_dev_portfolio.classes.PhoneNoAPI;
 import com.example.mob_dev_portfolio.R;
 import com.example.mob_dev_portfolio.adapters.PhoneNoAPIAdapter;
+import com.example.mob_dev_portfolio.database.BlockList;
+import com.example.mob_dev_portfolio.database.BlockListDatabase;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link SearchFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SearchFragment extends Fragment implements BlockDialog.BlockDialogListener {
+public class SearchFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -59,6 +65,7 @@ public class SearchFragment extends Fragment implements BlockDialog.BlockDialogL
     private PhoneNoAPIAdapter phoneNoAPIAdapter;
     private ArrayList<PhoneNoAPI> phoneNoAPIS = new ArrayList<PhoneNoAPI>();
     private RecyclerView.LayoutManager layoutManager;
+    private ExecutorService executorService;
 
     public SearchFragment() {
         // Required empty public constructor
@@ -138,11 +145,34 @@ public class SearchFragment extends Fragment implements BlockDialog.BlockDialogL
                 //filterList(newText);
             }
         });
-
+        this.executorService = Executors.newFixedThreadPool(4);
+        BlockListDatabase listDatabase = Room.databaseBuilder(getContext(), BlockListDatabase.class, "Block List Database").build();
         blockBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openBlockDialog();
+                String phoneNumber = String.valueOf(searchView.getQuery());
+                BlockList blockListSubmit = new BlockList(phoneNumber);
+                //BlockList blockListTest = new BlockList("0123456789");
+                executorService.execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        listDatabase.blockListDAO().getAllBlockList();
+                        listDatabase.blockListDAO().insertAll(blockListSubmit);
+                        List<BlockList> blockListInserted = listDatabase.blockListDAO().getAllBlockList();
+                        for(BlockList blockList : blockListInserted) {
+                            Log.i("BLOCK_LIST_INSERTED", blockList.toString());
+                        }
+
+                        BlockFragment blockFragment = new BlockFragment();
+                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                        fragmentTransaction.replace(R.id.frame_layout, blockFragment);
+                        fragmentTransaction.addToBackStack(null);
+                        fragmentTransaction.commit();
+                    }
+                });
+
+
             }
         });
         return view;
@@ -188,8 +218,8 @@ public class SearchFragment extends Fragment implements BlockDialog.BlockDialogL
         blockDialog.show(getActivity().getSupportFragmentManager(), getString(R.string.block_dialog));
     }
 
-    @Override
-    public void onYesClicked() {
-        String phoneNo = String.valueOf(searchView.getQuery());
-    }
+//    @Override
+//    public void onYesClicked() {
+//        String phoneNo = String.valueOf(searchView.getQuery());
+//    }
 }

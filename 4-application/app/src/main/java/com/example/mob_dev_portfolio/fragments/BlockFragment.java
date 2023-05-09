@@ -8,6 +8,9 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import android.provider.BlockedNumberContract;
 import android.provider.CallLog;
@@ -17,6 +20,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.mob_dev_portfolio.R;
+import com.example.mob_dev_portfolio.adapters.BlockListAdapter;
+import com.example.mob_dev_portfolio.adapters.ReportListAdapter;
+import com.example.mob_dev_portfolio.database.BlockList;
+import com.example.mob_dev_portfolio.database.BlockListDatabase;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -33,6 +45,11 @@ public class BlockFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    ArrayList<BlockList> blockLists = new ArrayList<BlockList>();
+    RecyclerView blockListView;
+    private BlockListAdapter blockListAdapter;
+    private RecyclerView.LayoutManager layoutManager;
+    public ExecutorService executorService;
 
     public BlockFragment() {
         // Required empty public constructor
@@ -68,8 +85,23 @@ public class BlockFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_block, container, false);
+        blockListView = view.findViewById(R.id.block_list_view);
+        ArrayList<String> phoneNumberBlockList = new ArrayList<>();
+        this.executorService = Executors.newFixedThreadPool(4);
+        BlockListDatabase listDatabase = Room.databaseBuilder(getContext(), BlockListDatabase.class, "Block List Database").allowMainThreadQueries().build();
+//        listDatabase.blockListDAO().deleteAll();
+        List<BlockList> blockLists = listDatabase.blockListDAO().getAllBlockList();
+        for(int i = 0; i < blockLists.size(); i++) {
+            String blockNumber = blockLists.get(i).getPhoneNo();
+            phoneNumberBlockList.add(blockNumber);
+            Log.i("BLOCK_LIST_LOGTAG", blockLists.toString());
+        }
+        blockListAdapter = new BlockListAdapter(phoneNumberBlockList);
+        layoutManager = new LinearLayoutManager(getContext());
+        blockListView.setLayoutManager(layoutManager);
+        blockListView.setAdapter(blockListAdapter);
+
         return view;
     }
 }

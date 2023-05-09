@@ -4,13 +4,17 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity
+@Entity(tableName = "blocklist")
 public class BlockList {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
     @ColumnInfo(name = "phone_no")
     private String phoneNo;
+
+    public BlockList(String phoneNo) {
+        this.phoneNo = phoneNo;
+    }
 
     public int getId() {
         return id;
@@ -26,5 +30,13 @@ public class BlockList {
 
     public void setPhoneNo(String phoneNo) {
         this.phoneNo = phoneNo;
+    }
+
+    @Override
+    public String toString() {
+        return "BlockList{" +
+                "id=" + id +
+                ", phoneNo='" + phoneNo + '\'' +
+                '}';
     }
 }
