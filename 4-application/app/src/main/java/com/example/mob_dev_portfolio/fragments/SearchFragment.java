@@ -106,6 +106,8 @@ public class SearchFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_search, container, false);
         searchView = view.findViewById(R.id.searchView);
         searchView.setQueryHint(getString(R.string.search_for_a_phone_number_here));
+        searchView.setIconified(false);
+        searchView.clearFocus();
         reportBtn = view.findViewById(R.id.report_button);
         blockBtn = view.findViewById(R.id.block_button);
         phoneTextView = view.findViewById(R.id.phone_textView);
