@@ -161,28 +161,6 @@ public class SearchFragment extends Fragment {
                 Bundle bundle = new Bundle();
                 bundle.putString("phoneNoBlock", phoneNumber);
                 blockDialog.setArguments(bundle);
-                BlockList blockListSubmit = new BlockList(phoneNumber);
-                //BlockList blockListTest = new BlockList("0123456789");
-                executorService.execute(new Runnable() {
-                    @Override
-                    public void run() {
-                        listDatabase.blockListDAO().getAllBlockList();
-                        listDatabase.blockListDAO().insertAll(blockListSubmit);
-                        List<BlockList> blockListInserted = listDatabase.blockListDAO().getAllBlockList();
-                        for(BlockList blockList : blockListInserted) {
-                            Log.i("BLOCK_LIST_INSERTED", blockList.toString());
-                        }
-
-                        BlockFragment blockFragment = new BlockFragment();
-                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                        fragmentTransaction.replace(R.id.frame_layout, blockFragment);
-                        fragmentTransaction.addToBackStack(null);
-                        fragmentTransaction.commit();
-                    }
-                });
-
-
             }
         });
         return view;
