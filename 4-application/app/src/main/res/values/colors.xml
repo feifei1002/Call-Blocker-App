@@ -10,4 +10,5 @@
     <color name="mainItem">#FF3700B3</color>
     <color name="subItem">#FF000000</color>
     <color name="button">#33BBFF</color>
+    <color name="search_textView">#EA457F</color>
 </resources>

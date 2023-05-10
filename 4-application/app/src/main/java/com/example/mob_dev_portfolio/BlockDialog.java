@@ -27,13 +27,11 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class BlockDialog extends DialogFragment {
-    private static final String TAG = "BlockDialog";
 
     private TextView yesBtn;
     private TextView cancelBtn;
     private TextView askBlockPhoneNo;
     private String phoneNoBlock;
-    private ExecutorService executorService;
 
     public static BlockDialog newInstance() {
         Bundle args = new Bundle();
@@ -61,11 +59,9 @@ public class BlockDialog extends DialogFragment {
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "onClick: closing dialog");
                 getDialog().dismiss();
             }
         });
-        this.executorService = Executors.newFixedThreadPool(4);
         BlockListDatabase listDatabase = Room.databaseBuilder(getContext(), BlockListDatabase.class, "Block List Database").allowMainThreadQueries().build();
         yesBtn.setOnClickListener(new View.OnClickListener() {
             @Override

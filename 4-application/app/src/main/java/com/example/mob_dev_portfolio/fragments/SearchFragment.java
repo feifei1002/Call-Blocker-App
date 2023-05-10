@@ -62,7 +62,9 @@ public class SearchFragment extends Fragment {
     private Button blockBtn;
     private SearchView searchView;
     private TextView phoneTextView;
+    private TextView phoneTypeTextView;
     private TextView phoneRegionTextView;
+    private TextView phoneCountryTextView;
     private TextView carrierTextView;
     private PhoneNoAPIAdapter phoneNoAPIAdapter;
     private ArrayList<PhoneNoAPI> phoneNoAPIS = new ArrayList<PhoneNoAPI>();
@@ -112,7 +114,9 @@ public class SearchFragment extends Fragment {
         reportBtn = view.findViewById(R.id.report_button);
         blockBtn = view.findViewById(R.id.block_button);
         phoneTextView = view.findViewById(R.id.phone_textView);
+        phoneTypeTextView = view.findViewById(R.id.phoneType_textView);
         phoneRegionTextView = view.findViewById(R.id.phoneRegion_textView);
+        phoneCountryTextView = view.findViewById(R.id.country_textView);
         carrierTextView = view.findViewById(R.id.carrier_textView);
         searchView.setQuery(phoneNoKnown, false);
         reportBtn.setOnClickListener(new View.OnClickListener() {
@@ -175,13 +179,19 @@ public class SearchFragment extends Fragment {
                     @Override
                     public void onResponse(JSONObject response) {
                         String phoneNumber;
+                        String phoneType;
                         String phoneRegion;
+                        String country;
                         String carrier;
                         try {
                             phoneNumber = response.getString("phone");
                             phoneTextView.setText(String.format("Phone: %s", phoneNumber));
+                            phoneType = response.getString("phone_type");
+                            phoneTypeTextView.setText(String.format("Phone Type: %s", phoneType));
                             phoneRegion = response.getString("phone_region");
                             phoneRegionTextView.setText(String.format("Phone Region: %s", phoneRegion));
+                            country = response.getString("country");
+                            phoneCountryTextView.setText(String.format("Country: %s", country));
                             carrier = response.getString("carrier");
                             carrierTextView.setText(String.format("Carrier: %s", carrier));
                         } catch (JSONException e) {
