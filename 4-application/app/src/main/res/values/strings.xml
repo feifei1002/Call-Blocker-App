@@ -27,6 +27,7 @@
     <string name="cancel">CANCEL</string>
     <string name="yes">YES</string>
     <string name="block_dialog">Block Dialog</string>
+    <string name="toast_blocked_message">Sorry you already blocked this phone number</string>
     <string-array name="callType_spinner">
         <item>Not Specified</item>
         <item>Scam</item>

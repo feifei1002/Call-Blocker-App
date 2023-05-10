@@ -82,15 +82,11 @@ public class BlockFragment extends Fragment {
         ArrayList<String> phoneNumberBlockList = new ArrayList<>();
         this.executorService = Executors.newFixedThreadPool(4);
         BlockListDatabase listDatabase = Room.databaseBuilder(getContext(), BlockListDatabase.class, "Block List Database").allowMainThreadQueries().build();
- //       listDatabase.blockListDAO().deleteAll();
+//        listDatabase.blockListDAO().deleteAll();
         List<BlockList> blockLists = listDatabase.blockListDAO().getAllBlockList();
         for(int i = 0; i < blockLists.size(); i++) {
             String blockNumber = blockLists.get(i).getPhoneNo();
-//            if(!phoneNumberBlockList.contains(blockNumber)) {
-                phoneNumberBlockList.add(blockNumber);
-//            }else{
-//                System.out.println("Sorry this phone no already been blocked!!!!!!!!");
-//            }
+            phoneNumberBlockList.add(blockNumber);
             Log.d("BLOCK_LIST_LOGTAG", blockLists.toString());
         }
 

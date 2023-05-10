@@ -39,4 +39,5 @@
     <string name="cancel">Hủy</string>
     <string name="yes">Xác định</string>
     <string name="block_dialog">Hộp thoại chặn</string>
+    <string name="toast_blocked_message">Xin lỗi, bạn đã chặn số điện thoại này</string>
 </resources>

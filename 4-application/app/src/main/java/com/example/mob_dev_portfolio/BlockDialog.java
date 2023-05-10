@@ -1,14 +1,18 @@
 package com.example.mob_dev_portfolio;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.UiThread;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -62,27 +66,18 @@ public class BlockDialog extends DialogFragment {
             }
         });
         this.executorService = Executors.newFixedThreadPool(4);
-        BlockListDatabase listDatabase = Room.databaseBuilder(getContext(), BlockListDatabase.class, "Block List Database").build();
+        BlockListDatabase listDatabase = Room.databaseBuilder(getContext(), BlockListDatabase.class, "Block List Database").allowMainThreadQueries().build();
         yesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 BlockList blockListSubmit = new BlockList(phoneNoBlock);
-                //BlockList blockListTest = new BlockList("0123456789");
-                executorService.execute(new Runnable() {
-                    @Override
-                    public void run() {
-                        //List<BlockList> listCheck = listDatabase.blockListDAO().getBlockListByPhoneNo();
-                        System.out.println(blockListSubmit.getPhoneNo());
-                        if (listDatabase.blockListDAO().getBlockListByPhoneNo(blockListSubmit.getPhoneNo()) == false) {
-                                listDatabase.blockListDAO().insertAll(blockListSubmit);
-                        } else {
-                            System.out.println("Sorry this phone no already been blocked");
-                        }
-                        //listDatabase.blockListDAO().getAllBlockList();
-                    }
-                });
+                System.out.println(blockListSubmit.getPhoneNo());
+                if (listDatabase.blockListDAO().getBlockListByPhoneNo(blockListSubmit.getPhoneNo()) == false) {
+                    listDatabase.blockListDAO().insertAll(blockListSubmit);
+                } else {
+                    Toast.makeText(getContext(), R.string.toast_blocked_message, Toast.LENGTH_SHORT).show();
+                }
                 getDialog().dismiss();
-
                 BlockFragment blockFragment = new BlockFragment();
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

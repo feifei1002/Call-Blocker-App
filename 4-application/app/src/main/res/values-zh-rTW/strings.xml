@@ -39,4 +39,5 @@
     <string name="cancel">取消</string>
     <string name="yes">確定</string>
     <string name="block_dialog">封鎖話框</string>
+    <string name="toast_blocked_message">抱歉，您已經封鎖了此電話號碼</string>
 </resources>
