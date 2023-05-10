@@ -1,10 +1,5 @@
 package com.example.mob_dev_portfolio.fragments;
 
-import static android.service.autofill.Validators.or;
-
-import android.content.ContentResolver;
-import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,8 +7,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
-import android.provider.BlockedNumberContract;
-import android.provider.CallLog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,7 +14,6 @@ import android.view.ViewGroup;
 
 import com.example.mob_dev_portfolio.R;
 import com.example.mob_dev_portfolio.adapters.BlockListAdapter;
-import com.example.mob_dev_portfolio.adapters.ReportListAdapter;
 import com.example.mob_dev_portfolio.database.BlockList;
 import com.example.mob_dev_portfolio.database.BlockListDatabase;
 
@@ -90,13 +82,18 @@ public class BlockFragment extends Fragment {
         ArrayList<String> phoneNumberBlockList = new ArrayList<>();
         this.executorService = Executors.newFixedThreadPool(4);
         BlockListDatabase listDatabase = Room.databaseBuilder(getContext(), BlockListDatabase.class, "Block List Database").allowMainThreadQueries().build();
-//        listDatabase.blockListDAO().deleteAll();
+ //       listDatabase.blockListDAO().deleteAll();
         List<BlockList> blockLists = listDatabase.blockListDAO().getAllBlockList();
         for(int i = 0; i < blockLists.size(); i++) {
             String blockNumber = blockLists.get(i).getPhoneNo();
-            phoneNumberBlockList.add(blockNumber);
-            Log.i("BLOCK_LIST_LOGTAG", blockLists.toString());
+//            if(!phoneNumberBlockList.contains(blockNumber)) {
+                phoneNumberBlockList.add(blockNumber);
+//            }else{
+//                System.out.println("Sorry this phone no already been blocked!!!!!!!!");
+//            }
+            Log.d("BLOCK_LIST_LOGTAG", blockLists.toString());
         }
+
         blockListAdapter = new BlockListAdapter(phoneNumberBlockList);
         layoutManager = new LinearLayoutManager(getContext());
         blockListView.setLayoutManager(layoutManager);

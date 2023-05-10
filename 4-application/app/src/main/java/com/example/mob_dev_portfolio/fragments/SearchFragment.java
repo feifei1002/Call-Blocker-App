@@ -153,8 +153,6 @@ public class SearchFragment extends Fragment {
         blockBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "onClick: open block dialog");
-
                 BlockDialog blockDialog = new BlockDialog();
                 blockDialog.show(getFragmentManager(), "BlockDialog");
                 String phoneNumber = String.valueOf(searchView.getQuery());

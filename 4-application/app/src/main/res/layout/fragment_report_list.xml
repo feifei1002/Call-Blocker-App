@@ -16,7 +16,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/report_textView"
-        tools:listitem="@layout/item_phone_no" />
+        tools:listitem="@layout/item_phone_no"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintVertical_bias="0.0"/>
 
     <TextView
         android:id="@+id/report_textView"

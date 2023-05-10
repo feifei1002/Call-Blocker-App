@@ -1,8 +1,5 @@
 package com.example.mob_dev_portfolio;
 
-import android.app.Dialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,9 +9,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDialogFragment;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -23,7 +17,6 @@ import androidx.room.Room;
 import com.example.mob_dev_portfolio.database.BlockList;
 import com.example.mob_dev_portfolio.database.BlockListDatabase;
 import com.example.mob_dev_portfolio.fragments.BlockFragment;
-import com.example.mob_dev_portfolio.fragments.SearchFragment;
 
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -73,15 +66,19 @@ public class BlockDialog extends DialogFragment {
         yesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "onClick: capturing input");
                 BlockList blockListSubmit = new BlockList(phoneNoBlock);
                 //BlockList blockListTest = new BlockList("0123456789");
                 executorService.execute(new Runnable() {
                     @Override
                     public void run() {
-                        listDatabase.blockListDAO().getAllBlockList();
-                        listDatabase.blockListDAO().insertAll(blockListSubmit);
-                        listDatabase.blockListDAO().getAllBlockList();
+                        //List<BlockList> listCheck = listDatabase.blockListDAO().getBlockListByPhoneNo();
+                        System.out.println(blockListSubmit.getPhoneNo());
+                        if (listDatabase.blockListDAO().getBlockListByPhoneNo(blockListSubmit.getPhoneNo()) == false) {
+                                listDatabase.blockListDAO().insertAll(blockListSubmit);
+                        } else {
+                            System.out.println("Sorry this phone no already been blocked");
+                        }
+                        //listDatabase.blockListDAO().getAllBlockList();
                     }
                 });
                 getDialog().dismiss();
