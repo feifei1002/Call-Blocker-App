@@ -28,7 +28,6 @@ public class ContactDataAdapter extends RecyclerView.Adapter<ContactDataAdapter.
         public TextView textViewNumber;
         public TextView textViewDate;
         public ImageView imageViewCallType;
-        //public FragmentCommunication fCommunication;
         public ViewHolder(@NonNull View view) {
             super(view);
             textViewName = view.findViewById(R.id.name_textView);

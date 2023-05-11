@@ -19,7 +19,6 @@ public class ReportFormDetailsActivity extends AppCompatActivity {
 
 
     ActivityReportFormDetailsBinding binding;
-    private Button reportBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

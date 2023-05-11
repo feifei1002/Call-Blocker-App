@@ -1,4 +1,4 @@
-package com.example.mob_dev_portfolio;
+package com.example.mob_dev_portfolio.classes;
 
 import static androidx.core.content.ContextCompat.getSystemService;
 
@@ -16,6 +16,8 @@ import android.widget.Toast;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 
+import com.example.mob_dev_portfolio.MainActivity;
+import com.example.mob_dev_portfolio.R;
 import com.example.mob_dev_portfolio.fragments.HomeFragment;
 
 public class DetectPhoneCall extends BroadcastReceiver {
@@ -29,9 +31,8 @@ public class DetectPhoneCall extends BroadcastReceiver {
                 phoneCallNotification();
             }
         } catch (Exception e) {
-            //e.printStackTrace();
+            e.printStackTrace();
         }
-        //phoneCallNotification();
     }
 
     private void phoneCallNotification() {

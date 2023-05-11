@@ -9,7 +9,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mob_dev_portfolio.R;
-import com.example.mob_dev_portfolio.database.BlockList;
 
 import java.util.ArrayList;
 
@@ -40,13 +39,6 @@ public class BlockListAdapter extends RecyclerView.Adapter<BlockListAdapter.View
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.textView.setText(blockList.get(position));
-        holder.textView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                Intent intent = new Intent( v.getContext(), ReportFormDetailsActivity.class);
-//                v.getContext().startActivity(intent);
-            }
-        });
     }
 
     @Override

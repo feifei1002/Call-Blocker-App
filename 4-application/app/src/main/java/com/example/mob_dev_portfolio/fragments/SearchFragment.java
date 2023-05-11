@@ -1,7 +1,5 @@
 package com.example.mob_dev_portfolio.fragments;
 
-import static android.content.ContentValues.TAG;
-
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,18 +24,15 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.mob_dev_portfolio.BlockDialog;
 import com.example.mob_dev_portfolio.classes.PhoneNoAPI;
 import com.example.mob_dev_portfolio.R;
 import com.example.mob_dev_portfolio.adapters.PhoneNoAPIAdapter;
-import com.example.mob_dev_portfolio.database.BlockList;
-import com.example.mob_dev_portfolio.database.BlockListDatabase;
+import com.example.mob_dev_portfolio.databases.BlockListDatabase;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -149,7 +144,6 @@ public class SearchFragment extends Fragment {
             @Override
             public boolean onQueryTextChange(String newText) {
                 return false;
-                //filterList(newText);
             }
         });
         this.executorService = Executors.newFixedThreadPool(4);
@@ -208,14 +202,4 @@ public class SearchFragment extends Fragment {
                 });
         requestQueue.add(jsonObjectRequest);
     }
-
-    public void openBlockDialog() {
-        BlockDialog blockDialog = new BlockDialog();
-        blockDialog.show(getActivity().getSupportFragmentManager(), getString(R.string.block_dialog));
-    }
-
-//    @Override
-//    public void onYesClicked() {
-//        String phoneNo = String.valueOf(searchView.getQuery());
-//    }
 }

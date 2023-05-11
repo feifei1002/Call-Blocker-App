@@ -16,7 +16,6 @@ import com.example.mob_dev_portfolio.ReportFormDetailsActivity;
 import java.util.ArrayList;
 
 public class ReportListAdapter extends RecyclerView.Adapter<ReportListAdapter.ViewHolder> {
-    //private ArrayList<ReportForm> reportForms;
     private ArrayList<String> reportForms;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

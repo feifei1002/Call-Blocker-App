@@ -1,4 +1,4 @@
-package com.example.mob_dev_portfolio.database;
+package com.example.mob_dev_portfolio.databases;
 
 import androidx.room.Database;
 import androidx.room.RoomDatabase;

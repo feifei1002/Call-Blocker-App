@@ -16,14 +16,13 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.mob_dev_portfolio.R;
+import com.example.mob_dev_portfolio.classes.DetectPhoneCall;
 import com.example.mob_dev_portfolio.databinding.ActivityMainBinding;
 import com.example.mob_dev_portfolio.fragments.BlockFragment;
 import com.example.mob_dev_portfolio.fragments.HomeFragment;
@@ -118,7 +117,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        //Intent intent = new Intent(context, MainActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 1, intent, PendingIntent.FLAG_IMMUTABLE);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, EXAMPLE_CHANNEL_ID)

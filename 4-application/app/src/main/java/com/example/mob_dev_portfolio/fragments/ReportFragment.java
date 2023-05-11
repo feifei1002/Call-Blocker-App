@@ -18,8 +18,8 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.mob_dev_portfolio.R;
-import com.example.mob_dev_portfolio.database.AppDatabase;
-import com.example.mob_dev_portfolio.database.ReportForm;
+import com.example.mob_dev_portfolio.databases.AppDatabase;
+import com.example.mob_dev_portfolio.databases.ReportForm;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.List;

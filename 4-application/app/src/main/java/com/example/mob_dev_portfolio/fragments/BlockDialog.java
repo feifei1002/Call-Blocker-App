@@ -1,9 +1,6 @@
-package com.example.mob_dev_portfolio;
+package com.example.mob_dev_portfolio.fragments;
 
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,19 +9,14 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.UiThread;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.room.Room;
 
-import com.example.mob_dev_portfolio.database.BlockList;
-import com.example.mob_dev_portfolio.database.BlockListDatabase;
-import com.example.mob_dev_portfolio.fragments.BlockFragment;
-
-import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import com.example.mob_dev_portfolio.R;
+import com.example.mob_dev_portfolio.databases.BlockList;
+import com.example.mob_dev_portfolio.databases.BlockListDatabase;
 
 public class BlockDialog extends DialogFragment {
 

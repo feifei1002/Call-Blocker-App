@@ -16,8 +16,8 @@ import android.widget.Button;
 
 import com.example.mob_dev_portfolio.R;
 import com.example.mob_dev_portfolio.adapters.ReportListAdapter;
-import com.example.mob_dev_portfolio.database.AppDatabase;
-import com.example.mob_dev_portfolio.database.ReportForm;
+import com.example.mob_dev_portfolio.databases.AppDatabase;
+import com.example.mob_dev_portfolio.databases.ReportForm;
 
 import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
@@ -35,7 +35,6 @@ public class ReportListFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    ExecutorService executorService;
     private String mParam1;
     private String mParam2;
     ArrayList<ReportForm> reportList = new ArrayList<ReportForm>();

@@ -83,7 +83,6 @@ public class HomeFragment extends Fragment{
         View view =  inflater.inflate(R.layout.fragment_home, container, false);
         contactDataView = view.findViewById(R.id.contact_list_view);
         checkPermission();
-        //getPhoneContacts();
         return view;
     }
 
@@ -98,7 +97,11 @@ public class HomeFragment extends Fragment{
     }
 
 
-    //Please test this on a phone that has contact data
+    /**Please test this on a phone that has contact data
+     *If the phone it's being test on have no data in the call log,
+     * please call the emulator using the extend control.
+     *Otherwise, please check out the folder in Gitlab for proof of the UI of this*/
+
     private void getPhoneContacts() {
         ContentResolver contentResolver = getActivity().getContentResolver();
         Uri uri = CallLog.Calls.CONTENT_URI;

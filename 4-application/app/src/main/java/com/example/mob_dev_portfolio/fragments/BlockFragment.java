@@ -14,8 +14,8 @@ import android.view.ViewGroup;
 
 import com.example.mob_dev_portfolio.R;
 import com.example.mob_dev_portfolio.adapters.BlockListAdapter;
-import com.example.mob_dev_portfolio.database.BlockList;
-import com.example.mob_dev_portfolio.database.BlockListDatabase;
+import com.example.mob_dev_portfolio.databases.BlockList;
+import com.example.mob_dev_portfolio.databases.BlockListDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
