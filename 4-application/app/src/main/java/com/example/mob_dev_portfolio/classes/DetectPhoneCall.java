@@ -1,7 +1,5 @@
 package com.example.mob_dev_portfolio.classes;
 
-import static androidx.core.content.ContextCompat.getSystemService;
-
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -10,11 +8,9 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
-import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.widget.Toast;
 import androidx.core.app.NotificationCompat;
-import androidx.core.content.ContextCompat;
 
 import com.example.mob_dev_portfolio.MainActivity;
 import com.example.mob_dev_portfolio.R;

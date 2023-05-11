@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mob_dev_portfolio.classes.ContactData;
 import com.example.mob_dev_portfolio.R;
-import com.example.mob_dev_portfolio.fragments.ReportFragment;
 import com.example.mob_dev_portfolio.fragments.SearchFragment;
 
 import java.util.ArrayList;
