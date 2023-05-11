@@ -17,7 +17,13 @@ _Complete the information above and then enumerate your functional and non funct
 - If the user click on "Yes" button in the dialog, the phone number must be add to the block list shown in the Block Fragment.
 - If the user click on "Cancel" button in the dialog, the user should stay in the Search Fragment.
 - If the user want to block a number twice, a Toast message should appear that say "Sorry you already blocked this phone number".
-
+- The Block Fragment should shows the phone number that the user has blocked.
+- When the user close down the application and reopen the application again, the list must still display data in both Block and Report List Fragments.
+- When the user click on back button on the phone, the application should not close.
+- When the user enter a phone number in the search bar and submit the query, the fragment must display the phone number, phone type, phone region, country and the carrier.
+- Whe the user navigate to the Search Fragment using the Bottom Navigation Bar, the search bar should be blank.
+- When the user submit a report form, the new report should be added to the Report list in Report List Fragment.
+- When the user click on the Report button in Report List fragment, they should be redirect to the Report form.
 
 
 #### Non-functional Requirements
@@ -28,7 +34,7 @@ _Complete the information above and then enumerate your functional and non funct
 - When an user launch the app for the first time, the app should ask for permissions for reading Call Log and Call State.
 - The Bottom Navigation Bar should be consistent throughout the application no matter what action the application is performing.
 - The icons used in the application should be easy for users to recognise and understand.
-- When the user click on back button on the phone, the application should not close.
+- The same phone number should not appear on the Block List twice.
 - The application should be usable in both portrait and landscape mode.
 - All the UI should have content description.
 - For every phone number in the list being displayed in the Home Fragment, there should be name, phone number, date and the call type being shown.
