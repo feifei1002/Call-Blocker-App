@@ -100,7 +100,9 @@ public class HomeFragment extends Fragment{
     /**Please test this on a phone that has contact data
      *If the phone it's being test on have no data in the call log,
      * please call the emulator using the extend control.
-     *Otherwise, please check out the folder in Gitlab for proof of the UI of this*/
+     *Otherwise, please check out the 6-video included Gitlab for proof of the UI of this
+     (I have been granted permission to include an extra file into my repository for
+      proof of the call log.*/
 
     private void getPhoneContacts() {
         ContentResolver contentResolver = getActivity().getContentResolver();
