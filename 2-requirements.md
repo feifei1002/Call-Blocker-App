@@ -21,7 +21,7 @@ _Complete the information above and then enumerate your functional and non funct
 - When the user close down the application and reopen the application again, the list must still display data in both Block and Report List Fragments.
 - When the user click on back button on the phone, the application should not close.
 - When the user enter a phone number in the search bar and submit the query, the fragment must display the phone number, phone type, phone region, country and the carrier.
-- Whe the user navigate to the Search Fragment using the Bottom Navigation Bar, the search bar should be blank.
+- When the user navigate to the Search Fragment using the Bottom Navigation Bar, the search bar should be blank.
 - When the user submit a report form, the new report should be added to the Report list in Report List Fragment.
 - When the user click on the Report button in Report List fragment, they should be redirect to the Report form.
 
