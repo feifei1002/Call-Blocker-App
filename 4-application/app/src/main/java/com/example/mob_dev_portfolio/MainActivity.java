@@ -16,6 +16,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -62,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
             return true;
 
         });
-        //phoneCallNotification();
+        phoneCallNotification();
     }
 
 
@@ -105,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
     private void phoneCallNotification () {
         Intent intent = new Intent(this, MainActivity.class);
         DetectPhoneCall detectPhoneCall = new DetectPhoneCall();
-        detectPhoneCall.onReceive(binding.getRoot().getContext(), intent);
+        //detectPhoneCall.onReceive(binding.getRoot().getContext(), intent);
         Context context = getApplicationContext();
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
