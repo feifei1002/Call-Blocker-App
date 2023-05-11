@@ -164,9 +164,9 @@ public class SearchFragment extends Fragment {
 
     public void onRequestPhoneNos () {
         //searchPhoneNumber();
-        String url1 = "https://api.veriphone.io/v2/verify?key=55944A19DF4542349F85B5ED29DCA8AE";
-        String url2 = "https://api.veriphone.io/v2/verify?phone=%2B49-15123577723&key=55944A19DF4542349F85B5ED29DCA8AE";
-        String url3 = "https://api.veriphone.io/v2/verify?phone="+phoneNo+"&key=55944A19DF4542349F85B5ED29DCA8AE";
+        String url1 = "https://api.veriphone.io/v2/verify?key=B4F636D300CC4387BA0A02284991B5CB";
+        String url2 = "https://api.veriphone.io/v2/verify?phone=%2B49-15123577723&key=B4F636D300CC4387BA0A02284991B5CB";
+        String url3 = "https://api.veriphone.io/v2/verify?phone="+phoneNo+"&key=B4F636D300CC4387BA0A02284991B5CB";
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url3, null,
                 new Response.Listener<JSONObject>() {
